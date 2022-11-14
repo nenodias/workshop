@@ -19,4 +19,14 @@ function deleteOne(id, callback) {
         callback);
 }
 
-module.exports = { findAll, insert, deleteOne }
+function findOne(id, callback) {
+    global.conn.collection('customers').findOne({ _id: new ObjectId(id) },
+        callback);
+}
+
+function update(id, customer, callback) {
+    global.conn.collection('customers').updateOne({ _id: new ObjectId(id) }, {$set:customer}, callback
+        );
+}
+
+module.exports = { findAll, insert, deleteOne, findOne, update }
